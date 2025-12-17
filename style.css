@@ -58,6 +58,13 @@ body{
     border-radius:10px;
 }
 
+.logo-img{
+    width:60px;
+    height:60px;
+    object-fit:contain;
+}
+
+
 /* NAV LINKS */
 nav a{
     margin:0 14px;
@@ -96,6 +103,35 @@ nav a:hover{
     position:relative;
     overflow:hidden;
 }
+
+.hero-bg{
+    position: relative;
+    height: 45vh;
+    background-image: url("assets/bg-hero.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.hero-bg::before{
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+}
+
+.hero-content{
+    position: relative;
+    height: 100%;
+    display: flex;
+    justify-content: center;   /* tengah vertikal */
+    align-items: center;       /* tengah horizontal */
+    text-align: center;        /* teks rata tengah */
+    padding: 0 40px;
+    color: #fff;
+}
+
+
 
 .neon-lines span{
     position:absolute;
@@ -245,12 +281,15 @@ button{
 }
 
 .about-bg {
-    position: relative;
     background-image: url("assets/bg.about.jpg");
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
     padding: 80px 20px;
+}
+
+.about-bg {
+    position: relative;
 }
 
 .about-bg::before {
@@ -269,9 +308,43 @@ button{
     color: #eaeaea;
 }
 
+.about-bg h1{
+    color:#fff;        /* ganti warna di sini */
+    margin-bottom:30px;
+}
+
+/* Spasi halaman About */
+.about-bg h1 {
+    margin-bottom: 30px;
+}
+
+.about-bg p {
+    margin-bottom: 40px;
+}
+
+.about-bg h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
 
 .about-bg ul {
     margin-bottom: 40px;
 }
+
+/* ===== DIAGRAM TREE IMAGE ===== */
+.tree-hero{
+    display: flex;
+    justify-content: center;
+    padding: 60px 20px;
+    background: #ffffff;
+}
+
+.tree-hero img{
+    width: 100%;
+    max-width: 800px;   /* ukuran maksimal */
+    height: auto;
+    border-radius: 16px;
+}
+
 
 
