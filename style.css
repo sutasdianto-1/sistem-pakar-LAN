@@ -243,3 +243,50 @@ button{
     display:none;
     border-left:5px solid var(--primary-blue);
 }
+
+.about-bg {
+    background-image: url("assets/bg.about.jpg");
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 80px 20px;
+}
+
+.about-bg {
+    position: relative;
+}
+
+.about-bg::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.6);
+}
+
+.about-bg .content-text {
+    position: relative;
+    color: #fff;
+}
+
+.about-bg .content-text p {
+    color: #eaeaea;
+}
+
+/* Spasi halaman About */
+.about-bg h1 {
+    margin-bottom: 30px;
+}
+
+.about-bg p {
+    margin-bottom: 40px;
+}
+
+.about-bg h2 {
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.about-bg ul {
+    margin-bottom: 40px;
+}
+
