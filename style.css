@@ -1,3 +1,16 @@
+/* ===============================
+   THEME VARIABLES
+   =============================== */
+:root{
+    --primary-blue:#1F3C88;
+    --accent-teal:#1ABC9C;
+    --soft-blue:#EAF2FF;
+    --text-dark:#1a1a1a;
+}
+
+/* ===============================
+   RESET
+   =============================== */
 *{
     margin:0;
     padding:0;
@@ -5,17 +18,33 @@
     font-family:'Segoe UI',sans-serif;
 }
 
+/* ===============================
+   BODY GLOBAL
+   =============================== */
+body{
+    background:#ffffff;
+    padding-top:90px; /* ruang untuk navbar fixed */
+    color:var(--text-dark);
+}
+
+/* ===============================
+   NAVBAR
+   =============================== */
 .navbar{
-    position:absolute;
+    position:fixed;
+    top:0;
+    left:0;
     width:100%;
     padding:18px 60px;
     display:flex;
     justify-content:space-between;
     align-items:center;
+    z-index:1000;
+    background:var(--primary-blue);
     color:#fff;
-    z-index:10;
 }
 
+/* LOGO */
 .logo{
     display:flex;
     align-items:center;
@@ -25,25 +54,29 @@
 .logo-box{
     width:38px;
     height:38px;
-    background:linear-gradient(45deg,#ff9800,#ff3d00);
+    background:var(--accent-teal);
     border-radius:10px;
 }
 
+/* NAV LINKS */
 nav a{
     margin:0 14px;
     color:#fff;
     text-decoration:none;
     font-weight:500;
+    transition:0.2s;
 }
 
-nav a.active{
-    color:#ffb300;
+nav a.active,
+nav a:hover{
+    color:var(--accent-teal);
 }
 
+/* SOCIAL */
 .social a{
     margin-left:8px;
-    color:#000;
-    background:#ffc107;
+    color:#fff;
+    background:var(--accent-teal);
     width:28px;
     height:28px;
     display:inline-flex;
@@ -54,9 +87,12 @@ nav a.active{
     font-weight:bold;
 }
 
+/* ===============================
+   HERO / HOME
+   =============================== */
 .hero{
     height:45vh;
-    background:linear-gradient(120deg,#0b0b2e,#1a0050);
+    background:linear-gradient(120deg,var(--primary-blue),var(--accent-teal));
     position:relative;
     overflow:hidden;
 }
@@ -65,8 +101,7 @@ nav a.active{
     position:absolute;
     width:5px;
     height:140%;
-    background:linear-gradient(to bottom,#ff006a,#ff5fa2);
-    box-shadow:0 0 16px #ff006a;
+    background:rgba(255,255,255,0.4);
     top:-20%;
 }
 
@@ -76,22 +111,27 @@ nav a.active{
 .neon-lines span:nth-child(4){right:21%}
 .neon-lines span:nth-child(5){right:26%}
 
+/* ===============================
+   HOME CONTENT
+   =============================== */
 .content{
     display:flex;
     gap:50px;
-    padding:70px 60px;
+    padding:80px 60px;
     align-items:center;
+    background:#ffffff;
 }
 
 .content-image img{
     width:100%;
     max-width:440px;
-    border-radius:8px;
+    border-radius:10px;
 }
 
 .content-text h1{
-    font-size:40px;
+    font-size:38px;
     margin-bottom:18px;
+    color:var(--primary-blue);
 }
 
 .content-text p{
@@ -100,6 +140,9 @@ nav a.active{
     color:#555;
 }
 
+/* ===============================
+   COOKIE
+   =============================== */
 .cookie{
     position:fixed;
     bottom:10px;
@@ -112,284 +155,91 @@ nav a.active{
 }
 
 .cookie a{
-    color:#00c3ff;
-}
-/* DIAGNOSA LAYOUT */
-.diagnosa-layout{
-    display:flex;
-    gap:50px;
-    padding:80px 60px;
-    background:#e0e0e0;
-    align-items:center;
+    color:var(--accent-teal);
 }
 
-.diagnosa-image img{
-    width:100%;
-    max-width:420px;
-    border-radius:12px;
-}
-
-.diagnosa-info h1{
-    font-size:36px;
-    margin-bottom:15px;
-}
-
-.diagnosa-info p{
-    line-height:1.7;
-    color:#444;
-}
-
-.diagnosa-list{
-    margin-top:20px;
-    list-style:none;
-}
-
-.diagnosa-list li{
-    margin-bottom:10px;
-    padding-left:30px;
-    position:relative;
-}
-
-.diagnosa-list li::before{
-    content:"✔";
-    position:absolute;
-    left:0;
-    color:#d35400;
-    font-weight:bold;
-}
-
-/* FITUR GRID */
-.diagnosa-features{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-    gap:30px;
-    padding:60px;
-    background:#e0e0e0;
-}
-
-.feature-box{
-    background:#e0e0e0;
-    text-align:center;
-    padding:20px;
-}
-
-.feature-box span{
-    display:inline-block;
-    width:45px;
-    height:45p
-}
-
-/* PERTANYAAN DIAGNOSA */
-.diagnosa-question{
-    background:#e0e0e0;
-    padding:70px 20px;
-    text-align:center;
-}
-
-.diagnosa-question h2{
-    font-size:32px;
-    margin-bottom:30px;
-    color:#333;
-}
-
-/* BUTTON */
-.diagnosa-buttons{
-    display:flex;
-    justify-content:center;
-    gap:30px;
-}
-
-.diagnosa-buttons button{
-    width:160px;
-    padding:14px 0;
-    font-size:18px;
-    border:none;
-    border-radius:8px;
-    cursor:pointer;
-    font-weight:600;
-    transition:0.3s;
-}
-
-.btn-yes{
-    background:#27ae60;
-    color:#fff;
-}
-
-.btn-no{
-    background:#c0392b;
-    color:#fff;
-}
-
-.btn-yes:hover{
-    background:#219150;
-}
-
-.btn-no:hover{
-    background:#a93226;
-}
-/* ===== PARTNER STYLE ===== */
-.tree-partner{
-    padding:120px 60px 60px;
-    background:#f2f2f2;
-}
-
-.tree-partner h2{
-    margin-bottom:30px;
-}
-
-.partner-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(160px,1fr));
-    gap:20px;
-}
-
-.partner-box{
-    background:#fff;
-    padding:25px;
-    text-align:center;
-    border-radius:14px;
-    font-weight:600;
-    box-shadow:0 6px 20px rgba(0,0,0,0.08);
-}
-
-/* ===== HERO IMAGE ===== */
-.tree-hero{
-    background:#0b0b2e;
-    padding:40px 0;
-    display:flex;
-    justify-content:center;
-}
-
-.tree-hero img{
-    width:100%;
+/* ===============================
+   DIAGNOSA PAGE
+   =============================== */
+.container{
     max-width:900px;
-    border-radius:16px;
-}
-
-/* ===== TREE DIAGRAM ===== */
-.tree-diagram{
-    padding:80px 60px;
-    background:#f2f2f2;
-}
-
-.tree-diagram h2{
-    text-align:center;
-    margin-bottom:50px;
-}
-
-.tree-flow{
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:40px;
-}
-
-.tree-row{
-    display:flex;
-    gap:30px;
-}
-
-.tree-node{
+    margin:40px auto;
     background:#ffffff;
-    padding:18px 24px;
-    border-radius:10px;
-    box-shadow:0 6px 18px rgba(0,0,0,0.1);
+    border-radius:8px;
+    padding:25px 30px;
+    box-shadow:0 8px 24px rgba(31,60,136,0.08);
+}
+
+.title{
+    background:var(--soft-blue);
+    padding:12px 15px;
+    font-weight:700;
+    border-radius:6px;
+    margin-bottom:25px;
+    color:var(--primary-blue);
+}
+
+.question{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:20px;
+    margin-bottom:18px;
+    border-bottom:1px solid #eee;
+    padding-bottom:12px;
+}
+
+.question label{
+    max-width:70%;
+    font-size:15px;
+}
+
+select{
+    padding:6px 12px;
+    border-radius:6px;
+    border:1px solid #ccc;
+}
+
+/* BUTTONS */
+.buttons{
+    margin-top:30px;
+    display:flex;
+    gap:10px;
+}
+
+button{
+    padding:10px 18px;
+    border:none;
+    border-radius:6px;
+    cursor:pointer;
+    font-size:14px;
     font-weight:600;
 }
 
-.tree-node.root{
-    background:#1a0050;
+.submit{
+    background:var(--accent-teal);
     color:#fff;
 }
 
-.tree-node.leaf{
-    background:#f39c12;
+.submit:hover{
+    background:#17a589;
+}
+
+.back{
+    background:#5cb85c;
     color:#fff;
 }
-/* ===== PARTNERS ===== */
-.partners{
-    padding:120px 60px 60px;
-    background:#ffffff;
+
+.back:hover{
+    background:#449d44;
 }
 
-.partners h2{
-    font-size:28px;
-    margin-bottom:30px;
-}
-
-.partner-cards{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:20px;
-}
-
-.partner-card{
-    background:#f3f3f3;
-    height:100px;
-    border-radius:16px;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-weight:700;
-    font-size:18px;
-    color:#222;
-}
-
-/* ===== HERO IMAGE ===== */
-.hero-image{
-    background:#0b0b2e;
-    padding:0;
-}
-
-.hero-image img{
-    width:100%;
-    height:420px;
-    object-fit:cover;
-    display:block;
-}
-
-.about-bg {
-    background-image: url("assets/bg.about.jpg");
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 80px 20px;
-}
-
-.about-bg {
-    position: relative;
-}
-
-.about-bg::before {
-    content: "";
-    position: absolute;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.6);
-}
-
-.about-bg .content-text {
-    position: relative;
-    color: #fff;
-}
-
-.about-bg .content-text p {
-    color: #eaeaea;
-}
-
-/* Spasi halaman About */
-.about-bg h1 {
-    margin-bottom: 30px;
-}
-
-.about-bg p {
-    margin-bottom: 40px;
-}
-
-.about-bg h2 {
-    margin-top: 40px;
-    margin-bottom: 20px;
-}
-
-.about-bg ul {
-    margin-bottom: 40px;
+/* HASIL */
+.hasil{
+    margin-top:35px;
+    background:#eef5ff;
+    padding:18px 20px;
+    border-radius:8px;
+    display:none;
+    border-left:5px solid var(--primary-blue);
 }
