@@ -126,19 +126,38 @@ function showResult(code) {
   const hasilBox = document.getElementById("hasil");
   hasilBox.style.display = "block";
 
+  // Susun data untuk dikirim ke halaman implikasi
+  const dataDiagnosa = {
+    kodeGangguan: code,
+    namaGangguan: result[code],
+    gejala: path.map(g => ({
+      kode: g,
+      nama: tree[g].q.replace("Apakah ","").replace("?","")
+    }))
+  };
+
+  // SIMPAN ke localStorage
+  localStorage.setItem("hasilDiagnosa", JSON.stringify(dataDiagnosa));
+
+  // TAMPILKAN di halaman diagnosa (tetap)
   let html = `<b>Hasil Diagnosa:</b><br>`;
   html += `<b>${result[code]}</b><br><br>`;
-  html += `<b>Gejala yang terpenuhi (sesuai decision table):</b><ul>`;
+  html += `<b>Gejala yang terpenuhi:</b><ul>`;
 
-  path.forEach(g => {
-    html += `<li>${g} – ${tree[g].q.replace("Apakah ","").replace("?","")}</li>`;
+  dataDiagnosa.gejala.forEach(g => {
+    html += `<li>${g.kode} – ${g.nama}</li>`;
   });
 
   html += `</ul>`;
   html += `<b>Kesimpulan:</b><br>`;
-  html += `Gangguan <b>${code}</b> disimpulkan karena seluruh gejala pada decision table terpenuhi.`;
+  html += `Gangguan <b>${code}</b> disimpulkan karena seluruh gejala terpenuhi.`;
 
   hasilBox.innerHTML = html;
+
+  // ARAHKAN ke halaman implikasi (opsional)
+  setTimeout(() => {
+    window.location.href = "implikasi.html";
+  }, 1500);
 }
 
 /* INIT */
