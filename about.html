@@ -1,11 +1,522 @@
-
 <!DOCTYPE html>
-<html lang="en">
+<html lang="id">
 <head>
     <meta charset="UTF-8">
-    <title>About | Sistem Pakar</title>
+    <title>Tentang Kami | Sistem Pakar Jaringan LAN</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CUSTOM STYLES UNTUK ABOUT PAGE ===== */
+        
+        /* About Hero Section */
+        .about-hero {
+            min-height: 70vh;
+            background: 
+                linear-gradient(rgba(31, 60, 136, 0.9), rgba(26, 188, 156, 0.85)),
+                url('https://images.unsplash.com/photo-1558494949-ef010cbdcc31?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .about-hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(circle at 20% 30%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 70%, rgba(255,255,255,0.05) 0%, transparent 50%);
+            animation: pulseBackground 15s ease-in-out infinite alternate;
+        }
+        
+        @keyframes pulseBackground {
+            0% { opacity: 0.3; transform: scale(1); }
+            100% { opacity: 0.6; transform: scale(1.1); }
+        }
+        
+        .about-hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 900px;
+            animation: heroReveal 1s ease-out;
+        }
+        
+        @keyframes heroReveal {
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .about-hero h1 {
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 20px;
+            text-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+            display: inline-block;
+        }
+        
+        .about-hero h1::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, transparent, white, transparent);
+            border-radius: 2px;
+        }
+        
+        .about-hero p {
+            font-size: 1.2rem;
+            color: rgba(255, 255, 255, 0.95);
+            max-width: 700px;
+            margin: 30px auto;
+            line-height: 1.6;
+        }
+        
+        /* Main Content Container */
+        .about-container {
+            max-width: 1200px;
+            margin: -50px auto 80px;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 25px;
+            padding: 50px;
+            box-shadow: 
+                0 25px 50px rgba(31, 60, 136, 0.15),
+                0 0 80px rgba(26, 188, 156, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            position: relative;
+            z-index: 10;
+            animation: containerFloat 0.8s cubic-bezier(0.34, 1.56, 0.64, 1);
+        }
+        
+        @keyframes containerFloat {
+            from {
+                opacity: 0;
+                transform: translateY(60px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Section Styling */
+        .about-section {
+            margin-bottom: 60px;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border-left: 6px solid var(--accent-teal);
+            position: relative;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            animation: sectionReveal 0.6s ease-out forwards;
+            opacity: 0;
+        }
+        
+        .about-section:nth-child(1) { animation-delay: 0.2s; }
+        .about-section:nth-child(2) { animation-delay: 0.4s; }
+        .about-section:nth-child(3) { animation-delay: 0.6s; }
+        
+        @keyframes sectionReveal {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .about-section:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(26, 188, 156, 0.15);
+        }
+        
+        .about-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-blue), var(--accent-teal));
+        }
+        
+        .section-header {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            color: var(--primary-blue);
+        }
+        
+        .section-header i {
+            font-size: 28px;
+            color: var(--accent-teal);
+            background: rgba(26, 188, 156, 0.1);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+        }
+        
+        .section-header h2 {
+            font-size: 28px;
+            margin: 0;
+            font-weight: 600;
+        }
+        
+        .highlight {
+            background: linear-gradient(120deg, var(--primary-blue), var(--accent-teal));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 600;
+            padding: 2px 5px;
+            position: relative;
+        }
+        
+        .about-section p {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            color: #555;
+            margin-bottom: 20px;
+        }
+        
+        /* Members Grid */
+        .members-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .member-card {
+            background: linear-gradient(135deg, #f8faff, #ffffff);
+            border-radius: 16px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            border: 2px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .member-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-teal);
+            box-shadow: 0 15px 35px rgba(26, 188, 156, 0.15);
+        }
+        
+        .member-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+        }
+        
+        .member-card:hover::before {
+            left: 100%;
+        }
+        
+        .member-avatar {
+            width: 100px;
+            height: 100px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            border-radius: 50%;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 36px;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(31, 60, 136, 0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        .member-card:hover .member-avatar {
+            transform: scale(1.1) rotate(5deg);
+        }
+        
+        .member-name {
+            font-size: 1.3rem;
+            font-weight: 600;
+            color: var(--primary-blue);
+            margin-bottom: 8px;
+        }
+        
+        .member-nim {
+            color: #666;
+            font-size: 0.95rem;
+            background: rgba(31, 60, 136, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 15px;
+        }
+        
+        .member-role {
+            color: var(--accent-teal);
+            font-weight: 500;
+            font-size: 0.9rem;
+            margin-top: 10px;
+        }
+        
+        /* Goals List */
+        .goals-list {
+            list-style: none;
+            padding: 0;
+            display: grid;
+            gap: 20px;
+        }
+        
+        .goal-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            padding: 20px;
+            background: linear-gradient(135deg, rgba(234, 242, 255, 0.5), rgba(255, 255, 255, 0.8));
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        
+        .goal-item:hover {
+            transform: translateX(10px);
+            border-left-color: var(--accent-teal);
+            background: linear-gradient(135deg, rgba(26, 188, 156, 0.1), rgba(255, 255, 255, 0.9));
+        }
+        
+        .goal-icon {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 20px;
+            flex-shrink: 0;
+        }
+        
+        .goal-content h4 {
+            margin: 0 0 8px 0;
+            color: var(--primary-blue);
+            font-size: 1.1rem;
+        }
+        
+        .goal-content p {
+            margin: 0;
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+        }
+        
+        /* Technology Stack */
+        .tech-stack {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+        
+        .tech-badge {
+            background: linear-gradient(135deg, var(--primary-blue), #3a5bc1);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .tech-badge:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(31, 60, 136, 0.3);
+        }
+        
+        /* Timeline */
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(180deg, var(--primary-blue), var(--accent-teal));
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--accent-teal);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 25px;
+            width: 15px;
+            height: 15px;
+            border-radius: 50%;
+            background: var(--accent-teal);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--accent-teal);
+        }
+        
+        .timeline-date {
+            color: var(--primary-blue);
+            font-weight: 600;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            text-decoration: none;
+            box-shadow: 0 10px 30px rgba(31, 60, 136, 0.3);
+            transition: all 0.3s ease;
+            z-index: 1000;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        
+        .back-to-top.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        .back-to-top:hover {
+            transform: translateY(-5px) scale(1.1);
+            box-shadow: 0 15px 40px rgba(31, 60, 136, 0.4);
+        }
+        
+        /* Responsive Design */
+        @media (max-width: 1024px) {
+            .about-container {
+                margin: -30px 20px 60px;
+                padding: 40px 30px;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.8rem;
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .about-hero {
+                padding: 80px 20px;
+                min-height: 60vh;
+            }
+            
+            .about-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .about-hero p {
+                font-size: 1rem;
+            }
+            
+            .about-container {
+                padding: 30px 20px;
+            }
+            
+            .about-section {
+                padding: 25px;
+            }
+            
+            .section-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .section-header h2 {
+                font-size: 24px;
+            }
+            
+            .members-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline {
+                padding-left: 30px;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .about-hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .about-section {
+                padding: 20px;
+            }
+            
+            .member-card {
+                padding: 20px;
+            }
+            
+            .tech-stack {
+                justify-content: center;
+            }
+        }
+    </style>
 </head>
 <body>
 
@@ -17,49 +528,262 @@
     </div>
 
     <nav>
-        <a href="index.html">Home</a>
-        <a href="diagnosa.html">Diagnosa</a>
-        <a href="about.html" class="active">About</a>
-        <a href="diagram-tree.html">Diagram Tree</a>
-        <a href="#">Implikasi</a>
+        <a href="index.html"><i class="fas fa-home"></i> Home</a>
+        <a href="diagnosa.html"><i class="fas fa-stethoscope"></i> Diagnosa</a>
+        <a href="about.html" class="active"><i class="fas fa-info-circle"></i> About</a>
+        <a href="diagram-tree.html"><i class="fas fa-project-diagram"></i> Diagram Tree</a>
+        <a href="implikasi.html"><i class="fas fa-clipboard-check"></i> Implikasi</a>
     </nav>
 </header>
 
-
-<!-- ===== About Section ===== -->
-<section class="content about-bg">
-    <div class="content-text" style="max-width: 800px; margin: auto;">
-        <h1> Tentang Kelompok</h1>
+<!-- ===== About Hero ===== -->
+<section class="about-hero">
+    <div class="about-hero-content">
+        <h1>Tentang Kelompok</h1>
         <p>
-            Website <b>Sistem Pakar untuk mendeteksi gangguan pada LAN</b> ini dibuat
-            sebagai tugas mata kuliah untuk menerapkan metode <b>Forward Chaining</b>
-            dalam membangun sebuah sistem yang mampu membantu proses analisis dan identifikasi
-            gangguan jaringan lokal (LAN) berdasarkan gejala-gejala yang terjadi.
-            Sistem ini diharapkan dapat menjadi media pembelajaran sekaligus solusi awal
-            dalam menangani permasalahan jaringan komputer secara sistematis dan terstruktur.
+            Selamat datang di halaman tentang kami. Tim pengembang Sistem Pakar Deteksi Gangguan LAN 
+            yang berdedikasi untuk menciptakan solusi inovatif dalam troubleshooting jaringan.
         </p>
-
-
-
-        <h2>Anggota Kelompok</h2>
-        <ul style="line-height: 1.8;">
-            <li>FARDINSYAH DWI MULYA SAPUTRA – 251011400480 </li>
-            <li>HABIB RIZKI KIENLI – 251011402167 </li>
-            <li>IKHWAN NURFUADI – 251011402157 </li>
-            <li>MUHAMAD ARIF SUTASDIANTO – 251011400437 </li>
-            <li>WILDAN HISYAM RAMADHAN – 251011400441 </li>
-        </ul>
-
-
-        
-        <h2>Tujuan Pembuatan</h2>
-        <p>
-            Tujuan dari pembuatan sistem ini adalah untuk membantu pengguna
-            dalam mendeteksi gangguan pada LAN, sedangkan untuk Pakar itu sendiri
-            dapat sebagai asisten pakar untuk mempercepat pendeteksian gangguan pada LAN.
-        </p>
+        <div class="tech-badge" style="background: rgba(255,255,255,0.2); backdrop-filter: blur(10px); padding: 12px 25px; border-radius: 50px; display: inline-flex; align-items: center; gap: 10px; color: white; margin-top: 20px;">
+            <i class="fas fa-rocket"></i>
+            Sistem Pakar • Forward Chaining • Jaringan LAN
+        </div>
     </div>
 </section>
 
+<!-- ===== Main Content ===== -->
+<main class="about-container">
+    <!-- Project Description Section -->
+    <section class="about-section">
+        <div class="section-header">
+            <i class="fas fa-project-diagram"></i>
+            <h2>Proyek Sistem Pakar</h2>
+        </div>
+        
+        <p>
+            Website <span class="highlight">Sistem Pakar untuk mendeteksi gangguan pada LAN</span> ini dibuat
+            sebagai tugas mata kuliah untuk menerapkan metode <span class="highlight">Forward Chaining</span>
+            dalam membangun sebuah sistem yang mampu membantu proses analisis dan identifikasi
+            gangguan jaringan lokal (LAN) berdasarkan gejala-gejala yang terjadi.
+        </p>
+        
+        <p>
+            Sistem ini diharapkan dapat menjadi <span class="highlight">media pembelajaran</span> sekaligus 
+            <span class="highlight">solusi awal</span> dalam menangani permasalahan jaringan komputer 
+            secara sistematis dan terstruktur.
+        </p>
+       
+    </section>
+
+    <!-- Team Members Section -->
+    <section class="about-section">
+        <div class="section-header">
+            <i class="fas fa-users"></i>
+            <h2>Anggota Kelompok</h2>
+        </div>
+        
+        <p>Tim kami terdiri dari mahasiswa yang berdedikasi untuk mengembangkan sistem pakar ini:</p>
+        
+        <div class="members-grid">
+            <div class="member-card">
+                <div class="member-avatar">FD</div>
+                <div class="member-name">FARDINSYAH DWI MULYA SAPUTRA</div>
+                <div class="member-nim">251011400480</div>
+                <div class="member-role">Frontend Developer</div>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-avatar">HR</div>
+                <div class="member-name">HABIB RIZKI KIENLI</div>
+                <div class="member-nim">251011402167</div>
+                <div class="member-role">System Analyst</div>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-avatar">IN</div>
+                <div class="member-name">IKHWAN NURFUADI</div>
+                <div class="member-nim">251011402157</div>
+                <div class="member-role">Backend Developer</div>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-avatar">MA</div>
+                <div class="member-name">MUHAMAD ARIF SUTASDIANTO</div>
+                <div class="member-nim">251011400437</div>
+                <div class="member-role">UI/UX Designer</div>
+            </div>
+            
+            <div class="member-card">
+                <div class="member-avatar">WH</div>
+                <div class="member-name">WILDAN HISYAM RAMADHAN</div>
+                <div class="member-nim">251011400441</div>
+                <div class="member-role">Project Manager</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Goals Section -->
+    <section class="about-section">
+        <div class="section-header">
+            <i class="fas fa-bullseye"></i>
+            <h2>Tujuan Pembuatan</h2>
+        </div>
+        
+        <p>
+            Tujuan utama dari pengembangan sistem pakar ini adalah untuk menciptakan 
+            alat yang efektif dalam mendiagnosis gangguan jaringan LAN.
+        </p>
+        
+        <div class="goals-list">
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <i class="fas fa-hands-helping"></i>
+                </div>
+                <div class="goal-content">
+                    <h4>Bantuan untuk Pengguna Umum</h4>
+                    <p>Membantu pengguna non-teknis dalam mendeteksi gangguan pada jaringan LAN dengan mudah</p>
+                </div>
+            </div>
+            
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <div class="goal-content">
+                    <h4>Asisten untuk Pakar</h4>
+                    <p>Berfungsi sebagai asisten pakar untuk mempercepat proses pendeteksian gangguan jaringan</p>
+                </div>
+            </div>
+            
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <div class="goal-content">
+                    <h4>Media Pembelajaran</h4>
+                    <p>Sebagai sarana belajar tentang troubleshooting jaringan dan metode forward chaining</p>
+                </div>
+            </div>
+            
+            <div class="goal-item">
+                <div class="goal-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <div class="goal-content">
+                    <h4>Solusi Sistematis</h4>
+                    <p>Menyediakan solusi terstruktur dalam menangani masalah jaringan komputer</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="timeline">
+            <div class="timeline-item">
+                <div class="timeline-date">Tahap 1: Research & Analysis</div>
+                <p>Studi literatur tentang sistem pakar dan troubleshooting jaringan LAN</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Tahap 2: Design & Development</div>
+                <p>Perancangan antarmuka dan implementasi algoritma forward chaining</p>
+            </div>
+            <div class="timeline-item">
+                <div class="timeline-date">Tahap 3: Testing & Deployment</div>
+                <p>Pengujian sistem dan deployment ke lingkungan produksi</p>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Back to Top Button -->
+<a href="#" class="back-to-top">
+    <i class="fas fa-arrow-up"></i>
+</a>
+
+<script>
+// Back to Top Button
+const backToTop = document.querySelector('.back-to-top');
+
+window.addEventListener('scroll', () => {
+    if (window.pageYOffset > 300) {
+        backToTop.classList.add('show');
+    } else {
+        backToTop.classList.remove('show');
+    }
+});
+
+backToTop.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+    });
+});
+
+// Animate elements on scroll
+const observerOptions = {
+    threshold: 0.1,
+    rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+        }
+    });
+}, observerOptions);
+
+// Observe all about sections
+document.querySelectorAll('.about-section').forEach(section => {
+    section.style.opacity = '0';
+    section.style.transform = 'translateY(30px)';
+    observer.observe(section);
+});
+
+// Member card hover effect
+document.querySelectorAll('.member-card').forEach(card => {
+    card.addEventListener('mouseenter', () => {
+        card.style.transform = 'translateY(-10px)';
+    });
+    
+    card.addEventListener('mouseleave', () => {
+        card.style.transform = 'translateY(0)';
+    });
+});
+
+// Goal items animation
+document.querySelectorAll('.goal-item').forEach((item, index) => {
+    item.style.animationDelay = `${index * 0.1}s`;
+});
+
+// Parallax effect for hero section
+window.addEventListener('scroll', () => {
+    const scrolled = window.pageYOffset;
+    const hero = document.querySelector('.about-hero');
+    if (hero) {
+        hero.style.transform = `translateY(${scrolled * 0.05}px)`;
+    }
+});
+
+// Typewriter effect for hero title (optional)
+const heroTitle = document.querySelector('.about-hero h1');
+if (heroTitle) {
+    const text = heroTitle.textContent;
+    heroTitle.textContent = '';
+    
+    let i = 0;
+    const typeWriter = () => {
+        if (i < text.length) {
+            heroTitle.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 50);
+        }
+    };
+    
+    // Uncomment untuk efek ketik
+    // setTimeout(typeWriter, 500);
+}
+</script>
+
 </body>
-</html>
+                    </html>
