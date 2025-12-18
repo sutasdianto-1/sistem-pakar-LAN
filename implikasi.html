@@ -2,9 +2,518 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8">
-  <title>Implikasi Diagnosa</title>
+  <title>Implikasi Diagnosa - Sistem Pakar LAN</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ANIMASI TAMBAHAN KHUSUS IMPLIKASI */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    
+    @keyframes slideInLeft {
+      from { opacity: 0; transform: translateX(-30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes slideInRight {
+      from { opacity: 0; transform: translateX(30px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+      100% { transform: scale(1); }
+    }
+    
+    @keyframes shimmer {
+      0% { background-position: -1000px 0; }
+      100% { background-position: 1000px 0; }
+    }
+    
+    .diagnosa-container {
+      max-width: 1000px;
+      margin: 40px auto;
+      background: white;
+      border-radius: 20px;
+      padding: 0;
+      box-shadow: 0 15px 50px rgba(31, 60, 136, 0.15);
+      overflow: hidden;
+      animation: fadeIn 0.8s ease-out;
+      border: 1px solid rgba(31, 60, 136, 0.1);
+    }
+    
+    .implikasi-header {
+      background: linear-gradient(135deg, var(--primary-blue), #2d4ba8);
+      color: white;
+      padding: 40px 30px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .implikasi-header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="%23ffffff" fill-opacity="0.1" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+      background-size: cover;
+      animation: waveMove 20s linear infinite;
+    }
+    
+    @keyframes waveMove {
+      0% { background-position: 0 0; }
+      100% { background-position: 1440px 0; }
+    }
+    
+    .implikasi-header h1 {
+      font-size: 36px;
+      margin-bottom: 10px;
+      position: relative;
+      z-index: 2;
+      font-weight: 700;
+      text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+    }
+    
+    .implikasi-header p {
+      font-size: 18px;
+      opacity: 0.9;
+      position: relative;
+      z-index: 2;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    
+    .status-badge {
+      display: inline-block;
+      background: rgba(255,255,255,0.2);
+      backdrop-filter: blur(10px);
+      padding: 8px 20px;
+      border-radius: 50px;
+      margin-top: 20px;
+      font-size: 14px;
+      font-weight: 500;
+      border: 1px solid rgba(255,255,255,0.3);
+      animation: pulse 2s infinite;
+    }
+    
+    .content-wrapper {
+      padding: 40px;
+    }
+    
+    .result-card {
+      background: linear-gradient(135deg, #f8faff, #ffffff);
+      border-radius: 16px;
+      padding: 30px;
+      margin-bottom: 30px;
+      border: 2px solid #eaf2ff;
+      animation: slideInLeft 0.6s ease-out 0.2s both;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .result-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 6px;
+      height: 100%;
+      background: linear-gradient(180deg, var(--accent-teal), var(--primary-blue));
+    }
+    
+    .result-title {
+      color: var(--primary-blue);
+      font-size: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .result-title i {
+      color: var(--accent-teal);
+      font-size: 28px;
+    }
+    
+    .diagnosis-code {
+      display: inline-block;
+      background: linear-gradient(135deg, var(--primary-blue), #3a5bc1);
+      color: white;
+      padding: 12px 25px;
+      border-radius: 50px;
+      font-size: 24px;
+      font-weight: 700;
+      margin: 10px 0 20px;
+      box-shadow: 0 8px 20px rgba(31, 60, 136, 0.3);
+      animation: pulse 3s infinite;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .diagnosis-code::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      animation: shimmer 3s infinite;
+    }
+    
+    .gejala-container {
+      background: white;
+      border-radius: 12px;
+      padding: 25px;
+      margin: 25px 0;
+      border: 2px solid #eaf2ff;
+      animation: slideInRight 0.6s ease-out 0.4s both;
+    }
+    
+    .gejala-list {
+      list-style: none;
+      padding: 0;
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .gejala-item {
+      background: linear-gradient(135deg, #f0f7ff, #ffffff);
+      padding: 15px;
+      border-radius: 10px;
+      border-left: 4px solid var(--accent-teal);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    
+    .gejala-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 20px rgba(26, 188, 156, 0.15);
+      border-left-color: var(--primary-blue);
+    }
+    
+    .gejala-item i {
+      color: var(--accent-teal);
+      font-size: 20px;
+      min-width: 24px;
+    }
+    
+    .gejala-code {
+      font-weight: 600;
+      color: var(--primary-blue);
+      font-size: 14px;
+      display: block;
+    }
+    
+    .gejala-nama {
+      color: #333;
+      font-size: 15px;
+    }
+    
+    .implikasi-content {
+      background: linear-gradient(135deg, #e6f7f3, #ffffff);
+      border-radius: 12px;
+      padding: 30px;
+      margin: 25px 0;
+      border: 2px solid var(--accent-teal);
+      animation: fadeIn 0.8s ease-out 0.6s both;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .implikasi-content::before {
+      content: '💡';
+      position: absolute;
+      right: 20px;
+      bottom: 20px;
+      font-size: 60px;
+      opacity: 0.1;
+    }
+    
+    .solusi-title {
+      color: var(--primary-blue);
+      font-size: 22px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .solusi-title i {
+      color: var(--accent-teal);
+    }
+    
+    .solusi-steps {
+      list-style: none;
+      padding: 0;
+      counter-reset: step-counter;
+    }
+    
+    .solusi-step {
+      margin: 15px 0;
+      padding-left: 45px;
+      position: relative;
+      counter-increment: step-counter;
+      animation: fadeIn 0.5s ease-out forwards;
+      opacity: 0;
+    }
+    
+    .solusi-step::before {
+      content: counter(step-counter);
+      position: absolute;
+      left: 0;
+      top: 0;
+      width: 32px;
+      height: 32px;
+      background: var(--accent-teal);
+      color: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 14px;
+      box-shadow: 0 4px 10px rgba(26, 188, 156, 0.3);
+    }
+    
+    .actions-section {
+      display: flex;
+      gap: 20px;
+      justify-content: center;
+      margin-top: 40px;
+      padding-top: 30px;
+      border-top: 1px solid #eaeaea;
+      animation: fadeIn 0.8s ease-out 0.8s both;
+    }
+    
+    .action-btn {
+      padding: 16px 32px;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 16px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      min-width: 180px;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .action-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.6s ease, height 0.6s ease;
+    }
+    
+    .action-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+    
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-teal), #17a589);
+      color: white;
+      box-shadow: 0 8px 25px rgba(26, 188, 156, 0.3);
+    }
+    
+    .btn-primary:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(26, 188, 156, 0.4);
+    }
+    
+    .btn-secondary {
+      background: linear-gradient(135deg, #6c757d, #5a6268);
+      color: white;
+      box-shadow: 0 8px 25px rgba(108, 117, 125, 0.3);
+    }
+    
+    .btn-secondary:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 35px rgba(108, 117, 125, 0.4);
+    }
+    
+    .btn-outline {
+      background: transparent;
+      color: var(--primary-blue);
+      border: 2px solid var(--primary-blue);
+    }
+    
+    .btn-outline:hover {
+      background: var(--primary-blue);
+      color: white;
+      transform: translateY(-4px);
+    }
+    
+    /* STATS GRID */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+    
+    .stat-item {
+      background: white;
+      padding: 20px;
+      border-radius: 12px;
+      text-align: center;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+      transition: all 0.3s ease;
+      border: 2px solid transparent;
+    }
+    
+    .stat-item:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-teal);
+      box-shadow: 0 10px 25px rgba(26, 188, 156, 0.15);
+    }
+    
+    .stat-icon {
+      width: 50px;
+      height: 50px;
+      background: linear-gradient(135deg, var(--primary-blue), var(--accent-teal));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 15px;
+      color: white;
+      font-size: 22px;
+    }
+    
+    .stat-info h4 {
+      margin: 0 0 5px 0;
+      color: #333;
+      font-size: 16px;
+    }
+    
+    .stat-info p {
+      margin: 0;
+      color: var(--primary-blue);
+      font-size: 18px;
+      font-weight: 600;
+    }
+    
+    /* NO DATA STATE */
+    .no-data {
+      text-align: center;
+      padding: 60px 20px;
+      animation: fadeIn 0.8s ease-out;
+    }
+    
+    .no-data i {
+      font-size: 60px;
+      color: #ccc;
+      margin-bottom: 20px;
+      display: block;
+    }
+    
+    .no-data h3 {
+      color: #666;
+      margin-bottom: 10px;
+    }
+    
+    .no-data p {
+      color: #888;
+      margin-bottom: 30px;
+      max-width: 400px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    /* PROGRESS ANIMATION */
+    .progress-container {
+      height: 6px;
+      background: #eaeaea;
+      border-radius: 3px;
+      margin: 30px 0;
+      overflow: hidden;
+      position: relative;
+    }
+    
+    .progress-bar {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary-blue), var(--accent-teal), var(--primary-blue));
+      background-size: 200% 100%;
+      border-radius: 3px;
+      animation: progressFlow 3s linear infinite;
+    }
+    
+    @keyframes progressFlow {
+      0% { background-position: 0% 50%; }
+      100% { background-position: 200% 50%; }
+    }
+    
+    /* RESPONSIVE */
+    @media (max-width: 768px) {
+      .diagnosa-container {
+        margin: 20px;
+        border-radius: 15px;
+      }
+      
+      .content-wrapper {
+        padding: 20px;
+      }
+      
+      .implikasi-header {
+        padding: 30px 20px;
+      }
+      
+      .implikasi-header h1 {
+        font-size: 28px;
+      }
+      
+      .gejala-list {
+        grid-template-columns: 1fr;
+      }
+      
+      .actions-section {
+        flex-direction: column;
+      }
+      
+      .action-btn {
+        width: 100%;
+      }
+      
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .diagnosis-code {
+        font-size: 20px;
+        padding: 10px 20px;
+      }
+      
+      .result-title {
+        font-size: 20px;
+      }
+    }
+  </style>
 </head>
 <body>
 
@@ -12,53 +521,331 @@
 <header class="navbar">
   <div class="logo">
     <img src="assets/logo.png" alt="Logo" class="logo-img">
-    <h2>Sistem Pakar<br><span>Diagnosa Kerusakan Komputer</span></h2>
+    <h2>Sistem Pakar<br><span>Diagnosa Gangguan Pada LAN</span></h2>
   </div>
 
   <nav>
-    <a href="index.html">Home</a>
-    <a href="diagnosa.html">Diagnosa</a>
-    <a href="about.html">About</a>
-    <a href="diagram-tree.html">Diagram Tree</a>
-    <a href="implikasi.html" class="active">Implikasi</a>
+    <a href="index.html"><i class="fas fa-home"></i> Home</a>
+    <a href="diagnosa.html"><i class="fas fa-stethoscope"></i> Diagnosa</a>
+    <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
+    <a href="diagram-tree.html"><i class="fas fa-project-diagram"></i> Diagram Tree</a>
+    <a href="implikasi.html" class="active"><i class="fas fa-clipboard-check"></i> Implikasi</a>
   </nav>
-
 </header>
 
-<!-- ================= CONTAINER ================= -->
+<!-- ================= MAIN CONTENT ================= -->
 <main class="diagnosa-container">
-  <div class="title">Implikasi Hasil Diagnosa</div>
+  <div class="implikasi-header">
+    <h1><i class="fas fa-file-medical-alt"></i> Implikasi Hasil Diagnosa</h1>
+    <p>Berikut adalah hasil analisis sistem pakar untuk gangguan jaringan LAN Anda</p>
+    <div class="status-badge">
+      <i class="fas fa-check-circle"></i> Analisis Selesai
+    </div>
+  </div>
 
-  <div id="implikasiBox"></div>
-
-  <div class="buttons">
-    <a href="diagnosa.html" class="back">Ulangi Diagnosa</a>
+  <div class="content-wrapper">
+    <div id="implikasiBox"></div>
   </div>
 </main>
 
 <script>
-const data = localStorage.getItem("hasilDiagnosa");
-
-if (!data) {
-  document.getElementById("implikasiBox").innerHTML =
-    "<p>Tidak ada data diagnosa. Silakan lakukan diagnosa terlebih dahulu.</p>";
-} else {
-  const hasil = JSON.parse(data);
-
-  let html = `<b>Hasil Diagnosa:</b><br>`;
-  html += `<b>${hasil.namaGangguan}</b><br><br>`;
-  html += `<b>Gejala yang terpenuhi:</b><ul>`;
-
-  hasil.gejala.forEach(g => {
-    html += `<li>${g.kode} – ${g.nama}</li>`;
-  });
-
-  html += `</ul>`;
-  html += `<b>Implikasi:</b><br>`;
-  html += `Berdasarkan hasil diagnosa di atas, disarankan untuk melakukan tindakan perbaikan sesuai dengan gangguan yang teridentifikasi.`;
-
-  document.getElementById("implikasiBox").innerHTML = html;
-}
+document.addEventListener('DOMContentLoaded', function() {
+  const data = localStorage.getItem("hasilDiagnosa");
+  const implikasiBox = document.getElementById("implikasiBox");
+  
+  // Animasi progress bar sebelum load
+  implikasiBox.innerHTML = `
+    <div class="progress-container">
+      <div class="progress-bar"></div>
+    </div>
+    <div style="text-align: center; padding: 20px;">
+      <i class="fas fa-spinner fa-spin" style="font-size: 30px; color: var(--primary-blue);"></i>
+      <p>Memproses hasil diagnosa...</p>
+    </div>
+  `;
+  
+  // Delay untuk efek loading
+  setTimeout(() => {
+    if (!data) {
+      implikasiBox.innerHTML = `
+        <div class="no-data">
+          <i class="fas fa-search"></i>
+          <h3>Tidak Ada Data Diagnosa</h3>
+          <p>Silakan lakukan diagnosa terlebih dahulu untuk melihat hasil dan implikasi.</p>
+          <a href="diagnosa.html" class="action-btn btn-primary">
+            <i class="fas fa-play-circle"></i> Mulai Diagnosa
+          </a>
+        </div>
+      `;
+    } else {
+      try {
+        const hasil = JSON.parse(data);
+        renderImplikasi(hasil);
+        
+        // Animasi step solusi
+        setTimeout(() => {
+          const steps = document.querySelectorAll('.solusi-step');
+          steps.forEach((step, index) => {
+            setTimeout(() => {
+              step.style.opacity = '1';
+              step.style.animation = 'fadeIn 0.5s ease-out';
+            }, index * 200);
+          });
+        }, 300);
+      } catch (error) {
+        console.error('Error parsing data:', error);
+        implikasiBox.innerHTML = `
+          <div class="no-data">
+            <i class="fas fa-exclamation-triangle"></i>
+            <h3>Terjadi Kesalahan</h3>
+            <p>Data diagnosa tidak valid. Silakan ulangi proses diagnosa.</p>
+            <a href="diagnosa.html" class="action-btn btn-primary">
+              <i class="fas fa-redo"></i> Ulangi Diagnosa
+            </a>
+          </div>
+        `;
+      }
+    }
+  }, 1000); // Simulasi loading 1 detik
+  
+  function renderImplikasi(hasil) {
+    // Tentukan solusi berdasarkan nama gangguan
+    const solusiMap = {
+      "E01 – Kabel / LAN Card pada PC rusak": [
+        "Periksa fisik kabel LAN dan konektor RJ45",
+        "Ganti kabel LAN dengan yang baru untuk testing",
+        "Coba port LAN yang berbeda pada router/switch",
+        "Ganti LAN Card atau gunakan LAN Card eksternal USB",
+        "Update driver LAN Card di Device Manager",
+        "Reset pengaturan jaringan di Windows"
+      ],
+      "E02 – Router/Modem bermasalah": [
+        "Restart router dan modem",
+        "Periksa indikator lampu pada router",
+        "Reset router ke factory default",
+        "Cek konfigurasi DHCP pada router",
+        "Update firmware router"
+      ],
+      "E03 – Masalah DNS atau Proxy": [
+        "Flush DNS cache dengan ipconfig /flushdns",
+        "Ubah DNS server ke Google DNS (8.8.8.8)",
+        "Disable proxy server di pengaturan browser",
+        "Reset Winsock dengan netsh winsock reset"
+      ]
+    };
+    
+    // Ambil solusi atau gunakan default
+    const solusi = solusiMap[hasil.namaGangguan] || [
+      "Identifikasi masalah lebih lanjut dengan teknisi",
+      "Periksa log sistem untuk error messages",
+      "Lakukan troubleshooting bertahap"
+    ];
+    
+    // Render HTML
+    implikasiBox.innerHTML = `
+      <div class="result-card">
+        <div class="result-title">
+          <i class="fas fa-search"></i> Hasil Diagnosa
+        </div>
+        
+        <div class="diagnosis-code">
+          <i class="fas fa-bug"></i> ${hasil.namaGangguan.split(' – ')[0]}
+        </div>
+        
+        <h3 style="color: var(--primary-blue); margin: 10px 0 20px; font-size: 22px;">
+          ${hasil.namaGangguan.split(' – ')[1]}
+        </h3>
+        
+        <p style="color: #666; line-height: 1.6;">
+          Sistem pakar telah menganalisis gejala yang Anda input dan menemukan gangguan jaringan yang sesuai.
+        </p>
+      </div>
+      
+      <div class="gejala-container">
+        <div class="result-title">
+          <i class="fas fa-exclamation-triangle"></i> Gejala yang Terpenuhi
+        </div>
+        <p style="color: #666; margin-bottom: 15px;">Berikut adalah gejala yang teridentifikasi:</p>
+        
+        <ul class="gejala-list">
+          ${hasil.gejala.map((g, index) => `
+            <li class="gejala-item" style="animation-delay: ${index * 0.1}s">
+              <i class="fas fa-circle"></i>
+              <div>
+                <span class="gejala-code">${g.kode}</span>
+                <span class="gejala-nama">${g.nama}</span>
+              </div>
+            </li>
+          `).join('')}
+        </ul>
+      </div>
+      
+      <div class="implikasi-content">
+        <div class="solusi-title">
+          <i class="fas fa-lightbulb"></i> Implikasi & Solusi
+        </div>
+        
+        <p style="color: #555; line-height: 1.7; margin-bottom: 25px;">
+          Berdasarkan hasil diagnosa di atas, disarankan untuk melakukan tindakan perbaikan 
+          sesuai dengan gangguan yang teridentifikasi. Ikuti langkah-langkah berikut:
+        </p>
+        
+        <ul class="solusi-steps">
+          ${solusi.map((step, index) => `
+            <li class="solusi-step" style="animation-delay: ${index * 0.2}s">${step}</li>
+          `).join('')}
+        </ul>
+        
+        <div style="background: #fff3cd; padding: 15px; border-radius: 8px; margin-top: 25px; border-left: 4px solid #ffc107;">
+          <p style="margin: 0; color: #856404; font-size: 14px;">
+            <i class="fas fa-exclamation-circle"></i> 
+            <strong>Tips:</strong> Lakukan langkah-langkah secara berurutan. Jika masalah belum teratasi setelah 
+            mencoba semua solusi, disarankan menghubungi teknisi jaringan profesional.
+          </p>
+        </div>
+      </div>
+      
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-clock"></i>
+          </div>
+          <div class="stat-info">
+            <h4>Estimasi Waktu</h4>
+            <p>30-60 Menit</p>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-tools"></i>
+          </div>
+          <div class="stat-info">
+            <h4>Tingkat Kesulitan</h4>
+            <p>${hasil.namaGangguan.includes('Kabel') ? 'Sedang' : 'Mudah'}</p>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-shield-alt"></i>
+          </div>
+          <div class="stat-info">
+            <h4>Keamanan Data</h4>
+            <p>Aman</p>
+          </div>
+        </div>
+        
+        <div class="stat-item">
+          <div class="stat-icon">
+            <i class="fas fa-percentage"></i>
+          </div>
+          <div class="stat-info">
+            <h4>Akurasi Sistem</h4>
+            <p>92%</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="actions-section">
+        <a href="diagnosa.html" class="action-btn btn-secondary">
+          <i class="fas fa-redo"></i> Diagnosa Ulang
+        </a>
+        <a href="index.html" class="action-btn btn-primary">
+          <i class="fas fa-home"></i> Kembali ke Home
+        </a>
+        <button onclick="printDiagnosis()" class="action-btn btn-outline">
+          <i class="fas fa-print"></i> Cetak Hasil
+        </button>
+      </div>
+    `;
+  }
+  
+  // Fungsi print
+  window.printDiagnosis = function() {
+    const hasil = JSON.parse(localStorage.getItem("hasilDiagnosa"));
+    const printWindow = window.open('', '_blank');
+    printWindow.document.write(`
+      <!DOCTYPE html>
+      <html>
+      <head>
+        <title>Hasil Diagnosa - Sistem Pakar LAN</title>
+        <style>
+          body { font-family: Arial, sans-serif; padding: 30px; max-width: 800px; margin: 0 auto; }
+          .header { text-align: center; border-bottom: 2px solid #1F3C88; padding-bottom: 20px; margin-bottom: 30px; }
+          .diagnosis-code { background: #1F3C88; color: white; padding: 10px 20px; display: inline-block; border-radius: 5px; }
+          .gejala-list { margin: 20px 0; }
+          .solusi-step { margin: 10px 0; }
+          .footer { margin-top: 50px; text-align: center; color: #666; font-size: 14px; }
+          @media print {
+            .no-print { display: none; }
+          }
+        </style>
+      </head>
+      <body>
+        <div class="header">
+          <h1>Hasil Diagnosa Sistem Pakar LAN</h1>
+          <p>Tanggal: ${new Date().toLocaleDateString('id-ID')}</p>
+          <div class="diagnosis-code">${hasil.namaGangguan}</div>
+        </div>
+        
+        <h3>Gejala yang Teridentifikasi:</h3>
+        <ul class="gejala-list">
+          ${hasil.gejala.map(g => `<li><strong>${g.kode}:</strong> ${g.nama}</li>`).join('')}
+        </ul>
+        
+        <h3>Solusi yang Disarankan:</h3>
+        <ol>
+          ${getSolutions(hasil.namaGangguan).map(s => `<li class="solusi-step">${s}</li>`).join('')}
+        </ol>
+        
+        <div class="footer">
+          <p>Dokumen ini dihasilkan otomatis oleh Sistem Pakar Diagnosa Kerusakan Komputer</p>
+          <p>© ${new Date().getFullYear()} - Sistem Pakar LAN</p>
+        </div>
+        
+        <div class="no-print" style="margin-top: 30px;">
+          <button onclick="window.print()">Cetak</button>
+          <button onclick="window.close()">Tutup</button>
+        </div>
+      </body>
+      </html>
+    `);
+    printWindow.document.close();
+  };
+  
+  function getSolutions(namaGangguan) {
+    const solusiMap = {
+      "E01 – Kabel / LAN Card pada PC rusak": [
+        "Periksa fisik kabel LAN dan konektor RJ45",
+        "Ganti kabel LAN dengan yang baru untuk testing",
+        "Coba port LAN yang berbeda pada router/switch",
+        "Ganti LAN Card atau gunakan LAN Card eksternal USB",
+        "Update driver LAN Card di Device Manager",
+        "Reset pengaturan jaringan di Windows"
+      ],
+      "E02 – Router/Modem bermasalah": [
+        "Restart router dan modem",
+        "Periksa indikator lampu pada router",
+        "Reset router ke factory default",
+        "Cek konfigurasi DHCP pada router",
+        "Update firmware router"
+      ],
+      "E03 – Masalah DNS atau Proxy": [
+        "Flush DNS cache dengan ipconfig /flushdns",
+        "Ubah DNS server ke Google DNS (8.8.8.8)",
+        "Disable proxy server di pengaturan browser",
+        "Reset Winsock dengan netsh winsock reset"
+      ]
+    };
+    
+    return solusiMap[namaGangguan] || [
+      "Identifikasi masalah lebih lanjut dengan teknisi",
+      "Periksa log sistem untuk error messages",
+      "Lakukan troubleshooting bertahap"
+    ];
+  }
+});
 </script>
 
 </body>
